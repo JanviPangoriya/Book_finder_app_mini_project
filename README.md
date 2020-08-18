@@ -4,5 +4,5 @@ Team Members are:-
 1. Ashita Goyal
 2. Bharti Gautam
 3. Janvi Pangoriya 
-4. Naina Agarwal
+4. Naina Agrawal
 5. Nidhi Gupta

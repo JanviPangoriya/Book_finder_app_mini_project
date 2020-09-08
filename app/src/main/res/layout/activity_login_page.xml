@@ -14,7 +14,7 @@
         android:text="Hello There!"
         android:layout_marginTop="200dp"
         android:layout_marginLeft="75dp"
-        android:fontFamily="sans-serif-smallcaps"
+        android:fontFamily="@font/abhaya_libre"
         android:textSize="45sp"
         android:textColor="#1B1E23"
         android:textStyle="bold"/>
@@ -26,16 +26,17 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/main"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="85dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginRight="30dp"
-        android:padding="7dp"
+        android:padding="10dp"
         android:inputType="text"
         android:maxLines="1"
         android:hint="@string/email_id"
-        android:background="#D3D3D3"
+        android:background="@drawable/inputfieldstyle1"
         android:textSize="20dp"
-        android:textColor="#000000"
-        tools:ignore="InvalidId,TextFields" />
+        tools:ignore="InvalidId,TextFields"
+        android:textColorHint="#000000"
+        />
 
     <EditText
         android:id="@+id/password"
@@ -43,15 +44,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/email"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="85dp"
+        android:layout_marginLeft="70dp"
         android:layout_marginRight="30dp"
-        android:padding="7dp"
+        android:padding="10dp"
         android:inputType="text"
         android:maxLines="1"
         android:hint="@string/password"
-        android:background="#D3D3D3"
+        android:background="@drawable/inputfieldstyle1"
         android:textSize="20sp"
-        android:textColor="#000000" />
+        android:textColorHint="#000000" />
 
     <Button
         android:id="@+id/login"
@@ -59,43 +60,42 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/password"
         android:layout_marginTop="45dp"
-        android:layout_marginLeft="85dp"
-        android:layout_marginRight="30dp"
-        android:padding="7dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginRight="110dp"
+        android:padding="6dp"
         android:textStyle="bold"
-        android:hint="@string/login"
-        android:background="#F4014F"
+        android:text="@string/login"
+        android:background="@drawable/button"
         android:textSize="25sp"
-        android:textColor="#ffffff" />
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/abhaya_libre"/>
 
     <TextView
         android:id="@+id/member"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/you_r_not_a_member"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="16sp"
-        android:layout_centerHorizontal="true"
-        android:padding="6dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="65dp"
         android:layout_marginBottom="30dp"
+        android:fontFamily="@font/abhaya_libre"
+        android:padding="6dp"
+        android:text="@string/you_r_not_a_member"
         android:textColor="#1B1E23"
-        />
+        android:textSize="23sp" />
 
     <TextView
         android:id="@+id/register"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="16sp"
-        android:layout_centerHorizontal="true"
-        android:padding="7dp"
+        android:layout_height="40dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginLeft="2dp"
         android:layout_marginBottom="30dp"
         android:layout_toRightOf="@id/member"
-        android:textStyle="bold"
+        android:fontFamily="@font/abhaya_libre"
+        android:padding="6dp"
+        android:text="Register"
         android:textColor="#F4014F"
-        />
+        android:textSize="23sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

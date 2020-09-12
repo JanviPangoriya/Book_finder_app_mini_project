@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/abhaya_libre"
         android:text="Register Yourself"
         android:textAlignment="center"
@@ -26,50 +26,54 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/textregister"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/inputfieldstyle2"
         android:hint="Name"
         android:inputType="text"
         android:maxLines="1"
         android:padding="10dp"
-        android:paddingStart="20dp"
+        android:paddingStart="15dp"
         android:textColor="@android:color/black"
-        android:textColorHint="@android:color/black" />
+        android:textColorHint="@android:color/black"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/edtemail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edtname"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/inputfieldstyle2"
         android:hint="Email id"
+        android:inputType="textEmailAddress"
         android:padding="10dp"
         android:paddingStart="20dp"
         android:textColor="@android:color/black"
-        android:textColorHint="@android:color/black" />
+        android:textColorHint="@android:color/black"
+        android:textSize="15sp" />
 
     <EditText
         android:id="@+id/edtphone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/edtemail"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="50dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/inputfieldstyle2"
         android:hint="Phone no"
-        android:inputType="number"
+        android:inputType="phone"
         android:maxLength="10"
         android:maxLines="1"
         android:padding="10dp"
-        android:paddingStart="20dp"
+        android:paddingStart="15dp"
         android:textColor="@android:color/black"
-        android:textColorHint="@android:color/black" />
+        android:textColorHint="@android:color/black"
+        android:textSize="15sp" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/edtpasswordLayout"
@@ -77,7 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edtphone"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         app:hintEnabled="false"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@android:color/black">
@@ -86,15 +90,16 @@
             android:id="@+id/edtpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/inputfieldstyle2"
             android:hint="Enter Password"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:paddingStart="20dp"
+            android:paddingStart="15dp"
             android:textColor="@android:color/black"
-            android:textColorHint="@android:color/black" />
+            android:textColorHint="@android:color/black"
+            android:textSize="15sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -103,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/edtpasswordLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         app:hintEnabled="false"
         app:passwordToggleEnabled="true"
         app:passwordToggleTint="@android:color/black">
@@ -112,28 +117,27 @@
             android:id="@+id/edtconfirmpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:background="@drawable/inputfieldstyle2"
             android:hint="Confirm Password"
             android:inputType="textPassword"
             android:padding="10dp"
-            android:paddingStart="20dp"
+            android:paddingStart="15dp"
             android:textColor="@android:color/black"
-            android:textColorHint="@android:color/black" />
+            android:textColorHint="@android:color/black"
+            android:textSize="15sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnCreateAcc"
-        android:layout_width="match_parent"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/edtconfirmpasswordLayout"
-        android:layout_marginLeft="90dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:layout_marginRight="90dp"
         android:background="@drawable/button"
         android:fontFamily="@font/abhaya_libre"
-        android:letterSpacing="0.25dp"
         android:padding="10dp"
         android:text="Create Account"
         android:textColor="#ffffff"
@@ -145,16 +149,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:padding="10dp"
+        android:fontFamily="@font/abhaya_libre"
         android:text="Already a Member ?"
         android:textAlignment="center"
         android:textColor="#ffffff"
-        android:textSize="30sp"
-        android:fontFamily="@font/abhaya_libre"
-        android:textStyle="bold"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 
 </RelativeLayout>

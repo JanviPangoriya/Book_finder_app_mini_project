@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginBackground"
+    android:background="@drawable/loginbackground"
     tools:context=".LoginActivity">
 
     <TextView
         android:id="@+id/main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="75dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginTop="120dp"
         android:fontFamily="@font/abhaya_libre"
         android:text="Hello There!"
         android:textColor="#1B1E23"
-        android:textSize="45sp"
+        android:textSize="40sp"
         android:textStyle="bold" />
 
 
@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/main"
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/inputfieldstyle1"
@@ -35,7 +35,7 @@
         android:padding="10dp"
         android:paddingStart="15dp"
         android:textColorHint="#000000"
-        android:textSize="20dp"
+        android:textSize="15sp"
         tools:ignore="InvalidId,TextFields" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/email"
-        android:layout_marginLeft="70dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
         app:hintEnabled="false"
@@ -61,64 +61,68 @@
             android:padding="10dp"
             android:paddingStart="15dp"
             android:textColorHint="#000000"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/login"
         android:layout_width="120dp"
-        android:layout_height="53dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/passwordLayout"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="45dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/button"
         android:fontFamily="@font/abhaya_libre"
         android:padding="6dp"
         android:text="@string/login"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtForgetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/member"
-        android:layout_marginTop="45dp"
+        android:layout_above="@id/memberLayout"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="15dp"
         android:fontFamily="@font/abhaya_libre"
         android:text="Forget Password?"
         android:textColor="@android:color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="15dp"/>
-
-    <TextView
-        android:id="@+id/member"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="65dp"
-        android:layout_marginBottom="30dp"
-        android:fontFamily="@font/abhaya_libre"
-        android:text="@string/you_are_not_a_member"
-        android:textColor="#1B1E23"
-        android:textSize="25sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="1dp"
-        android:layout_marginBottom="30dp"
-        android:layout_toRightOf="@id/member"
-        android:fontFamily="@font/abhaya_libre"
-        android:text="Register"
-        android:textColor="#F4014F"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/memberLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abhaya_libre"
+            android:text="@string/you_are_not_a_member"
+            android:textColor="#1B1E23"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="1dp"
+            android:layout_toRightOf="@id/member"
+            android:fontFamily="@font/abhaya_libre"
+            android:text="Register"
+            android:textColor="#F4014F"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
 </RelativeLayout>

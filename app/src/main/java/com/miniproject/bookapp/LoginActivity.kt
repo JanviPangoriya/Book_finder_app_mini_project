@@ -3,16 +3,69 @@ package com.miniproject.bookapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
+import android.view.View
+import android.widget.*
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var register: TextView
+    lateinit var etEmail: EditText
+    lateinit var etPassword: TextInputEditText
+    lateinit var btnLogin: Button
+    lateinit var progressBar: ProgressBar
     lateinit var txtForgetPassword: TextView
+    lateinit var register: TextView
+    lateinit var fauth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        register = findViewById(R.id.register)
+
+        etEmail = findViewById(R.id.etEmail)
+        etPassword = findViewById(R.id.etPassword)
+        btnLogin = findViewById(R.id.btnLogin)
+        progressBar = findViewById(R.id.progressBar)
         txtForgetPassword = findViewById(R.id.txtForgetPassword)
+        register = findViewById(R.id.register)
+        fauth = FirebaseAuth.getInstance()
+
+        if (fauth.currentUser != null) {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
+        }
+
+        progressBar.visibility = View.GONE
+
+        btnLogin.setOnClickListener {
+
+            val email = etEmail.text.toString()
+            val password = etPassword.text.toString()
+
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+
+                progressBar.visibility = View.VISIBLE
+                fauth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        startActivity(Intent(this, HomeActivity::class.java))
+                        finish()
+                    } else {
+
+                        progressBar.visibility = View.GONE
+                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT)
+                            .show()
+                    }
+                }
+
+            } else {
+                if (email.isEmpty()) {
+                    etEmail.error = "Please fill out this field"
+                }
+                if (password.isEmpty()) {
+                    etPassword.error = "Please fill out this field"
+                }
+            }
+        }
+
         register.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
             finish()

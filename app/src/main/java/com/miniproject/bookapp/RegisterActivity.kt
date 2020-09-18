@@ -62,7 +62,12 @@ class RegisterActivity : AppCompatActivity() {
                                     fstore.collection("users").document(userid).set(user)
                                         .addOnCompleteListener { task ->
                                             if (task.isSuccessful) {
-                                                startActivity(Intent(this, HomeActivity::class.java))
+                                                startActivity(
+                                                    Intent(
+                                                        this,
+                                                        HomeActivity::class.java
+                                                    )
+                                                )
                                                 finish()
                                                 Toast.makeText(
                                                     this,
@@ -71,8 +76,7 @@ class RegisterActivity : AppCompatActivity() {
                                                 ).show()
                                             }
                                         }
-                                }
-                                else{
+                                } else {
                                     Toast.makeText(this, "Some error occurred", Toast.LENGTH_SHORT)
                                         .show()
 

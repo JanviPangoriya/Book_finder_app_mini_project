@@ -150,7 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btnCreateAcc"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp" />
 
     <TextView
         android:id="@+id/txtMember"

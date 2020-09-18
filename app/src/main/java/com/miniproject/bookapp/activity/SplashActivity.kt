@@ -1,4 +1,4 @@
-package com.miniproject.bookapp
+package com.miniproject.bookapp.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,7 +8,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
-import org.w3c.dom.Text
+import com.miniproject.bookapp.R
 
 class SplashActivity : AppCompatActivity() {
 
@@ -25,8 +25,12 @@ class SplashActivity : AppCompatActivity() {
         imgLogo = findViewById(R.id.imgLogo)
         textView = findViewById(R.id.textView)
 
-        logo = AnimationUtils.loadAnimation(this, R.anim.logo)
-        name = AnimationUtils.loadAnimation(this, R.anim.name)
+        logo = AnimationUtils.loadAnimation(this,
+            R.anim.logo
+        )
+        name = AnimationUtils.loadAnimation(this,
+            R.anim.name
+        )
 
         imgLogo.startAnimation(logo)
         textView.startAnimation(name)

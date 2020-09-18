@@ -144,6 +144,14 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnCreateAcc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"/>
+
     <TextView
         android:id="@+id/txtMember"
         android:layout_width="match_parent"

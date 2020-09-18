@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginActivity : AppCompatActivity() {
     lateinit var etEmail: EditText
@@ -16,6 +17,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var txtForgetPassword: TextView
     lateinit var register: TextView
     lateinit var fauth: FirebaseAuth
+    lateinit var fstore:FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
         txtForgetPassword = findViewById(R.id.txtForgetPassword)
         register = findViewById(R.id.register)
         fauth = FirebaseAuth.getInstance()
+        fstore= FirebaseFirestore.getInstance()
 
         if (fauth.currentUser != null) {
             startActivity(Intent(this, HomeActivity::class.java))
@@ -46,6 +49,10 @@ class LoginActivity : AppCompatActivity() {
                 progressBar.visibility = View.VISIBLE
                 fauth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
+                        val userid= fauth.currentUser?.uid
+                        if (userid != null) {
+                            fstore.collection("users").document(userid).update("password",password)
+                        }
                         startActivity(Intent(this, HomeActivity::class.java))
                         finish()
                     } else {

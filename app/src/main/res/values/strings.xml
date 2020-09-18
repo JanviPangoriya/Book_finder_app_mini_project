@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BookApp</string>
+    <string name="app_name">Bookopedia</string>
     <string name="you_are_not_a_member">You are not a member</string>
     <string name="login">Login</string>
     <string name="password">Password</string>

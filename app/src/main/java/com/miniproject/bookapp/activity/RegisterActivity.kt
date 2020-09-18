@@ -1,4 +1,4 @@
-package com.miniproject.bookapp
+package com.miniproject.bookapp.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.miniproject.bookapp.R
+import com.miniproject.bookapp.model.User
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -29,16 +30,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        edtname = findViewById(R.id.edtname)
-        edtemail = findViewById(R.id.edtemail)
-        edtphone = findViewById(R.id.edtphone)
-        edtpassword = findViewById(R.id.edtpassword)
-        edtconfirmpassword = findViewById(R.id.edtconfirmpassword)
-        btnCreateAcc = findViewById(R.id.btnCreateAcc)
-        progressBar = findViewById(R.id.progressBar)
-        txtMember = findViewById(R.id.txtMember)
-        fauth = FirebaseAuth.getInstance()
-        fstore = FirebaseFirestore.getInstance()
+        init()
 
         progressBar.visibility = View.GONE
 
@@ -56,7 +48,12 @@ class RegisterActivity : AppCompatActivity() {
                     fauth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                val user = User(name, email, phoneno, password)
+                                val user = User(
+                                    name,
+                                    email,
+                                    phoneno,
+                                    password
+                                )
                                 val userid = fauth.currentUser?.uid
                                 if (userid != null) {
                                     fstore.collection("users").document(userid).set(user)
@@ -79,16 +76,13 @@ class RegisterActivity : AppCompatActivity() {
                                 } else {
                                     Toast.makeText(this, "Some error occurred", Toast.LENGTH_SHORT)
                                         .show()
-
                                 }
 
                             } else {
                                 progressBar.visibility = View.GONE
                                 Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT)
                                     .show()
-
                             }
-
                         }
                 } else {
                     if (phoneno.length != 10) {
@@ -107,27 +101,37 @@ class RegisterActivity : AppCompatActivity() {
                     }
 
                 }
+
             } else {
-                if (name.isEmpty()) {
-                    edtname.error = "Please fill out this field"
-                }
-                if (email.isEmpty()) {
-                    edtemail.error = "Please fill out this field"
-                }
-                if (phoneno.isEmpty()) {
-                    edtphone.error = "Please fill out this field"
-                }
-                if (password.isEmpty()) {
-                    edtpassword.error = "Please fill out this field"
-                }
-                if (confirmpassword.isEmpty()) {
-                    edtconfirmpassword.error = "Please fill out this field"
-                }
+                showError(edtname)
+                showError(edtemail)
+                showError(edtphone)
+                showError(edtpassword)
+                showError(edtconfirmpassword)
             }
         }
         txtMember.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
+        }
+    }
+
+    private fun init() {
+        edtname = findViewById(R.id.edtname)
+        edtemail = findViewById(R.id.edtemail)
+        edtphone = findViewById(R.id.edtphone)
+        edtpassword = findViewById(R.id.edtpassword)
+        edtconfirmpassword = findViewById(R.id.edtconfirmpassword)
+        btnCreateAcc = findViewById(R.id.btnCreateAcc)
+        progressBar = findViewById(R.id.progressBar)
+        txtMember = findViewById(R.id.txtMember)
+        fauth = FirebaseAuth.getInstance()
+        fstore = FirebaseFirestore.getInstance()
+    }
+
+    private fun showError(inputField: EditText) {
+        if (inputField.text.isEmpty()) {
+            inputField.error = "Please fill out this field"
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.miniproject.bookapp
+package com.miniproject.bookapp.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +8,7 @@ import android.widget.*
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.miniproject.bookapp.R
 
 class LoginActivity : AppCompatActivity() {
     lateinit var etEmail: EditText
@@ -17,20 +18,13 @@ class LoginActivity : AppCompatActivity() {
     lateinit var txtForgetPassword: TextView
     lateinit var register: TextView
     lateinit var fauth: FirebaseAuth
-    lateinit var fstore:FirebaseFirestore
+    lateinit var fstore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        etEmail = findViewById(R.id.etEmail)
-        etPassword = findViewById(R.id.etPassword)
-        btnLogin = findViewById(R.id.btnLogin)
-        progressBar = findViewById(R.id.progressBar)
-        txtForgetPassword = findViewById(R.id.txtForgetPassword)
-        register = findViewById(R.id.register)
-        fauth = FirebaseAuth.getInstance()
-        fstore= FirebaseFirestore.getInstance()
+        init()
 
         if (fauth.currentUser != null) {
             startActivity(Intent(this, HomeActivity::class.java))
@@ -49,27 +43,22 @@ class LoginActivity : AppCompatActivity() {
                 progressBar.visibility = View.VISIBLE
                 fauth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        val userid= fauth.currentUser?.uid
+                        val userid = fauth.currentUser?.uid
                         if (userid != null) {
-                            fstore.collection("users").document(userid).update("password",password)
+                            fstore.collection("users").document(userid).update("password", password)
                         }
                         startActivity(Intent(this, HomeActivity::class.java))
                         finish()
                     } else {
 
                         progressBar.visibility = View.GONE
-                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
                     }
                 }
 
             } else {
-                if (email.isEmpty()) {
-                    etEmail.error = "Please fill out this field"
-                }
-                if (password.isEmpty()) {
-                    etPassword.error = "Please fill out this field"
-                }
+                showError(etEmail)
+                showError(etPassword)
             }
         }
 
@@ -80,6 +69,23 @@ class LoginActivity : AppCompatActivity() {
         txtForgetPassword.setOnClickListener {
             startActivity(Intent(this, ForgetPasswordActivity::class.java))
             finish()
+        }
+    }
+
+    private fun init() {
+        etEmail = findViewById(R.id.etEmail)
+        etPassword = findViewById(R.id.etPassword)
+        btnLogin = findViewById(R.id.btnLogin)
+        progressBar = findViewById(R.id.progressBar)
+        txtForgetPassword = findViewById(R.id.txtForgetPassword)
+        register = findViewById(R.id.register)
+        fauth = FirebaseAuth.getInstance()
+        fstore = FirebaseFirestore.getInstance()
+    }
+
+    private fun showError(inputField: EditText) {
+        if (inputField.text.isEmpty()) {
+            inputField.error = "Please fill out this field"
         }
     }
 }

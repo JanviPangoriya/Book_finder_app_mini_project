@@ -1,4 +1,4 @@
-package com.miniproject.bookapp
+package com.miniproject.bookapp.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ktx.toObject
+import com.miniproject.bookapp.R
 
 class HomeActivity : AppCompatActivity() {
 
@@ -27,20 +27,14 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        name = findViewById(R.id.name)
-        email = findViewById(R.id.email)
-        phoneno = findViewById(R.id.phoneno)
-        password = findViewById(R.id.password)
-        btnSignOut = findViewById(R.id.btnSignOut)
-        fauth = FirebaseAuth.getInstance()
-        fstore = FirebaseFirestore.getInstance()
-        progressBar = findViewById(R.id.progressBar)
+        init()
 
         progressBar.visibility = View.VISIBLE
 
         val uid = fauth.currentUser?.uid
 
         if (uid != null) {
+
             fstore.collection("users").document(uid).get()
                 .addOnSuccessListener { documentSnapshot ->
 
@@ -61,5 +55,16 @@ class HomeActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
+    }
+
+    private fun init() {
+        name = findViewById(R.id.name)
+        email = findViewById(R.id.email)
+        phoneno = findViewById(R.id.phoneno)
+        password = findViewById(R.id.password)
+        btnSignOut = findViewById(R.id.btnSignOut)
+        fauth = FirebaseAuth.getInstance()
+        fstore = FirebaseFirestore.getInstance()
+        progressBar = findViewById(R.id.progressBar)
     }
 }

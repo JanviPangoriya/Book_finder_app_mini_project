@@ -1,34 +1,109 @@
 package com.miniproject.bookapp.activity
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.RelativeLayout
-import android.widget.TextView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
+import android.view.MenuItem
+import android.widget.FrameLayout
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 import com.miniproject.bookapp.R
 
 class HomeActivity : AppCompatActivity() {
+    lateinit var drawer_layout: DrawerLayout
+    lateinit var coordinatorLayout: CoordinatorLayout
+    lateinit var toolbar: Toolbar
+    lateinit var frameLayout: FrameLayout
+    lateinit var navigationView: NavigationView
 
-    lateinit var name: TextView
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_home)
+        init()
+        setUpToolbar(toolbar)
+        var actionBarDrawerToggle = ActionBarDrawerToggle(
+            this, drawer_layout,
+            R.string.open_drawer,
+            R.string.close_drawer
+        )
+        drawer_layout.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.syncState()
+        navigationView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.dashboard -> Toast.makeText(
+                    this@HomeActivity,
+                    "Clicked on Dashboard",
+                    Toast.LENGTH_SHORT
+                ).show()
+                R.id.profile -> Toast.makeText(
+                    this@HomeActivity,
+                    "Clicked on Profile",
+                    Toast.LENGTH_SHORT
+                ).show()
+                R.id.faqs -> Toast.makeText(
+                    this@HomeActivity,
+                    "Clicked on FAQS",
+                    Toast.LENGTH_SHORT
+                ).show()
+                R.id.favourites -> Toast.makeText(
+                    this@HomeActivity,
+                    "Clicked on Favourites",
+                    Toast.LENGTH_SHORT
+                ).show()
+                R.id.signout -> Toast.makeText(
+                    this@HomeActivity,
+                    "Clicked on Signout",
+                    Toast.LENGTH_SHORT
+                ).show()
+                R.id.aboutus -> Toast.makeText(
+                    this@HomeActivity,
+                    "Clicked on About Us",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            return@setNavigationItemSelectedListener true
+        }
+
+    }
+
+    private fun init() {
+        drawer_layout = findViewById(R.id.drawer_layout)
+        coordinatorLayout = findViewById(R.id.coordinator_layout)
+        toolbar = findViewById(R.id.toolbar)
+        navigationView = findViewById(R.id.navigation_view)
+        frameLayout = findViewById(R.id.frame_layout)
+    }
+
+    fun setUpToolbar(toolbar: Toolbar) {
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "BOOKOPEDIA"
+        supportActionBar?.setHomeButtonEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        if (id == R.id.home) {
+            drawer_layout.openDrawer(GravityCompat.START)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+}
+
+/*    lateinit var name: TextView
     lateinit var email: TextView
     lateinit var phoneno: TextView
     lateinit var password: TextView
     lateinit var btnSignOut: Button
     lateinit var fauth: FirebaseAuth
     lateinit var fstore: FirebaseFirestore
-    lateinit var progressBar: RelativeLayout
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
-
-        init()
-
+    lateinit var progressBar: RelativeLayout*/
+/*
         progressBar.visibility = View.VISIBLE
 
         val uid = fauth.currentUser?.uid
@@ -66,5 +141,5 @@ class HomeActivity : AppCompatActivity() {
         fauth = FirebaseAuth.getInstance()
         fstore = FirebaseFirestore.getInstance()
         progressBar = findViewById(R.id.progressBar)
-    }
-}
+    }*/
+

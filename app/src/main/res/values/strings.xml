@@ -10,4 +10,6 @@
     <string name="signout">Signout</string>
     <string name="faqs">FAQS</string>
     <string name="about_us">About us</string>
+    <string name="open_drawer">Open-drawer3</string>
+    <string name="close_drawer">Close-drawer3</string>
 </resources>

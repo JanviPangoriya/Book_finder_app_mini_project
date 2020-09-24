@@ -14,7 +14,7 @@ import com.google.android.material.navigation.NavigationView
 import com.miniproject.bookapp.R
 
 class HomeActivity : AppCompatActivity() {
-    lateinit var drawer_layout: DrawerLayout
+    lateinit var drawerLayout: DrawerLayout
     lateinit var coordinatorLayout: CoordinatorLayout
     lateinit var toolbar: Toolbar
     lateinit var frameLayout: FrameLayout
@@ -25,13 +25,11 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         init()
-        setUpToolbar(toolbar)
+        setUpToolbar()
         var actionBarDrawerToggle = ActionBarDrawerToggle(
-            this, drawer_layout,
-            R.string.open_drawer,
-            R.string.close_drawer
+            this@HomeActivity, drawerLayout, R.string.open_drawer, R.string.close_drawer
         )
-        drawer_layout.addDrawerListener(actionBarDrawerToggle)
+        drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
         navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
@@ -72,14 +70,14 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        drawer_layout = findViewById(R.id.drawer_layout)
+        drawerLayout = findViewById(R.id.drawer_layout)
         coordinatorLayout = findViewById(R.id.coordinator_layout)
         toolbar = findViewById(R.id.toolbar)
         navigationView = findViewById(R.id.navigation_view)
         frameLayout = findViewById(R.id.frame_layout)
     }
 
-    fun setUpToolbar(toolbar: Toolbar) {
+    fun setUpToolbar() {
         setSupportActionBar(toolbar)
         supportActionBar?.title = "BOOKOPEDIA"
         supportActionBar?.setHomeButtonEnabled(true)
@@ -89,7 +87,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == R.id.home) {
-            drawer_layout.openDrawer(GravityCompat.START)
+            drawerLayout.openDrawer(GravityCompat.START)
         }
         return super.onOptionsItemSelected(item)
     }

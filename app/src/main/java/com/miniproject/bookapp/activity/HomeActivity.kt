@@ -15,6 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.miniproject.bookapp.R
+import com.miniproject.bookapp.fragment.FaqsFragment
 
 class HomeActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
@@ -72,12 +73,11 @@ class HomeActivity : AppCompatActivity() {
                     supportActionBar?.title = "Profile"
                 }
                 R.id.faqs -> {
-                    Toast.makeText(
-                        this@HomeActivity,
-                        "Clicked on FAQS",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, FaqsFragment())
+                        .commit()
                     supportActionBar?.title = "FAQS"
+                    drawerLayout.closeDrawers()
                 }
                 R.id.favourites -> {
                     Toast.makeText(

@@ -31,7 +31,7 @@
             android:background="@color/colorAccent"
             android:paddingLeft="5dp"
             android:paddingBottom="10dp"
-            android:text="Ans: The very best books entertain, engage and enlighten. They wrap us in their world, giving us a window into the lives of others or a mirror to reflect on ourselves. These are the books you'll find on Bookopedia. Our mission to seek out the diamonds in the rough from the approximate 100,000 books published each year (in the USA alone), so that you can spend more time reading exceptional titles, and less on books that don't live up to your expectations."
+            android:text="Ans: The very best books entertain, engage and enlighten. They wrap us in their world, giving us a window into the lives of others or a mirror to reflect on ourselves. These are the books you'll find on Bookopedia. Our mission to seek out the diamonds in the rough from the approximate 100,000 books published each year so that you can spend more time reading exceptional titles, and less on books that don't live up to your expectations."
             android:textColor="@color/black"
             android:textSize="21sp" />
 

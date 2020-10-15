@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.DashboardFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/edtSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:textSize="18sp"
+                    android:drawableStart="@drawable/ic_action_search"
+                    android:drawableEnd="@drawable/ic_action_search_enter"
+                    android:drawablePadding="6dp"
+                    android:hint="Search Your Desired Book Here."
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/darkGrey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtSearch"
+                    app:layout_constraintVertical_bias="0.026"
+                    android:weightSum="6">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/customCardBookSample1"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/cardview_edit_border"
+                        android:outlineAmbientShadowColor="@color/grey"
+                        android:outlineSpotShadowColor="@color/grey"
+                        app:cardCornerRadius="6dp"
+                        app:cardElevation="2dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.069"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edtSearch"
+                        app:layout_constraintVertical_bias="0.018">
+
+                        <ImageView
+                            android:id="@+id/imgSampleBook1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/logo"
+                            app:layout_constraintBottom_toBottomOf="@+id/customCardBookSample1"
+                            app:layout_constraintEnd_toEndOf="@+id/customCardBookSample1"
+                            app:layout_constraintStart_toStartOf="@+id/customCardBookSample1"
+                            app:layout_constraintTop_toTopOf="@+id/customCardBookSample1" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/customCardBookSample2"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="3"
+                        android:background="@drawable/cardview_edit_border"
+                        android:outlineAmbientShadowColor="@color/grey"
+                        android:outlineSpotShadowColor="@color/grey"
+                        app:cardCornerRadius="6dp"
+                        app:cardElevation="2dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.069"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edtSearch"
+                        app:layout_constraintVertical_bias="0.018">
+
+                        <ImageView
+                            android:id="@+id/imgSampleBook2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/logo"
+                            app:layout_constraintBottom_toBottomOf="@+id/customCardBookSample2"
+                            app:layout_constraintEnd_toEndOf="@+id/customCardBookSample2"
+                            app:layout_constraintStart_toStartOf="@+id/customCardBookSample2"
+                            app:layout_constraintTop_toTopOf="@+id/customCardBookSample2" />
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

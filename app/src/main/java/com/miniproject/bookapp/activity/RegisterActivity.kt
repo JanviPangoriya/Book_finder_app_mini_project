@@ -1,15 +1,19 @@
 package com.miniproject.bookapp.activity
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.miniproject.bookapp.R
 import com.miniproject.bookapp.model.User
+import com.miniproject.bookapp.util.ConnectionManager
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -44,47 +48,74 @@ class RegisterActivity : AppCompatActivity() {
 
             if (name.isNotEmpty() && email.isNotEmpty() && phoneno.isNotEmpty() && password.isNotEmpty() && confirmpassword.isNotEmpty()) {
                 if (password.equals(confirmpassword) && phoneno.length == 10) {
-                    progressBar.visibility = View.VISIBLE
-                    fauth.createUserWithEmailAndPassword(email, password)
-                        .addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
-                                val user = User(
-                                    name,
-                                    email,
-                                    phoneno,
-                                    password
-                                )
-                                val userid = fauth.currentUser?.uid
-                                if (userid != null) {
-                                    fstore.collection("users").document(userid).set(user)
-                                        .addOnCompleteListener { task ->
-                                            if (task.isSuccessful) {
-                                                startActivity(
-                                                    Intent(
-                                                        this,
-                                                        HomeActivity::class.java
+                    if (ConnectionManager().checkConnectivity(this@RegisterActivity)) {
+
+                        progressBar.visibility = View.VISIBLE
+                        fauth.createUserWithEmailAndPassword(email, password)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    val user = User(
+                                        name,
+                                        email,
+                                        phoneno,
+                                        password
+                                    )
+                                    val userid = fauth.currentUser?.uid
+                                    if (userid != null) {
+                                        fstore.collection("users").document(userid).set(user)
+                                            .addOnCompleteListener { task ->
+                                                if (task.isSuccessful) {
+                                                    startActivity(
+                                                        Intent(
+                                                            this,
+                                                            HomeActivity::class.java
+                                                        )
                                                     )
-                                                )
-                                                finish()
-                                                Toast.makeText(
-                                                    this,
-                                                    "Registered Successfully",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
+                                                    finish()
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Registered Successfully",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
                                             }
-                                        }
+                                    } else {
+                                        Toast.makeText(
+                                            this,
+                                            "Some error occurred",
+                                            Toast.LENGTH_SHORT
+                                        )
+                                            .show()
+                                    }
+
                                 } else {
-                                    Toast.makeText(this, "Some error occurred", Toast.LENGTH_SHORT)
+                                    progressBar.visibility = View.GONE
+                                    Toast.makeText(
+                                        this,
+                                        task.exception?.message,
+                                        Toast.LENGTH_SHORT
+                                    )
                                         .show()
                                 }
-
-                            } else {
-                                progressBar.visibility = View.GONE
-                                Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT)
-                                    .show()
                             }
+                    }else{
+                        val dialog = AlertDialog.Builder(
+                            this@RegisterActivity
+                        )
+                        dialog.setTitle("Error")
+                        dialog.setMessage("Internet Connection is not Found")
+                        dialog.setPositiveButton("Open Settings") { text, listener ->
+                            val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+                            startActivity(settingsIntent)
+                            finish()
                         }
-                } else {
+                        dialog.setNegativeButton("Exit") { text, listener ->
+                            ActivityCompat.finishAffinity(this@RegisterActivity)
+                        }
+                        dialog.create()
+                        dialog.show()
+                    }
+                }else {
                     if (phoneno.length != 10) {
                         edtphone.error = "Invalid"
                         Toast.makeText(
@@ -134,4 +165,9 @@ class RegisterActivity : AppCompatActivity() {
             inputField.error = "Please fill out this field"
         }
     }
+
+    /*override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }*/
 }

@@ -15,7 +15,10 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.miniproject.bookapp.R
+import com.miniproject.bookapp.fragment.AboutUsFragment
+import com.miniproject.bookapp.fragment.DashboardFragment
 import com.miniproject.bookapp.fragment.FaqsFragment
+import com.miniproject.bookapp.fragment.FavouritesFragment
 
 class HomeActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
@@ -34,6 +37,7 @@ class HomeActivity : AppCompatActivity() {
         init()
 
         setUpToolbar()
+        openHome()
 
         var actionBarDrawerToggle = ActionBarDrawerToggle(
             this@HomeActivity, drawerLayout, R.string.open_drawer, R.string.close_drawer
@@ -57,12 +61,8 @@ class HomeActivity : AppCompatActivity() {
 
             when (it.itemId) {
                 R.id.dashboard -> {
-                    Toast.makeText(
-                        this@HomeActivity,
-                        "Clicked on Dashboard",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    supportActionBar?.title = "Dashboard"
+                    openHome()
+                    drawerLayout.closeDrawers()
                 }
                 R.id.profile -> {
                     Toast.makeText(
@@ -80,20 +80,19 @@ class HomeActivity : AppCompatActivity() {
                     drawerLayout.closeDrawers()
                 }
                 R.id.favourites -> {
-                    Toast.makeText(
-                        this@HomeActivity,
-                        "Clicked on Favourites",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, FavouritesFragment())
+                        .commit()
+                    drawerLayout.closeDrawers()
                     supportActionBar?.title = "Favourites"
                 }
                 R.id.signout -> signout()
                 R.id.aboutus -> {
-                    Toast.makeText(
-                        this@HomeActivity,
-                        "Clicked on About Us",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    supportFragmentManager.beginTransaction().replace(
+                        R.id.frame_layout,
+                        AboutUsFragment()
+                    ).commit()
+                    drawerLayout.closeDrawers()
                     supportActionBar?.title = "About Us"
                 }
             }
@@ -108,6 +107,7 @@ class HomeActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         navigationView = findViewById(R.id.navigation_view)
         frameLayout = findViewById(R.id.frame_layout)
+        fauth = FirebaseAuth.getInstance()
     }
 
     fun setUpToolbar() {
@@ -134,6 +134,15 @@ class HomeActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
+    private fun openHome(){
+        val fragment = DashboardFragment()
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.frame_layout, fragment)
+        transaction.commit()
+        supportActionBar?.title = "Dashboard"
+        navigationView.setCheckedItem(R.id.dashboard)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         if (id == android.R.id.home) {
@@ -141,53 +150,13 @@ class HomeActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-}
 
-/*    lateinit var name: TextView
-    lateinit var email: TextView
-    lateinit var phoneno: TextView
-    lateinit var password: TextView
-    lateinit var btnSignOut: Button
-    lateinit var fauth: FirebaseAuth
-    lateinit var fstore: FirebaseFirestore
-    lateinit var progressBar: RelativeLayout*/
-/*
-        progressBar.visibility = View.VISIBLE
+    override fun onBackPressed() {
+        val frag = supportFragmentManager.findFragmentById(R.id.frame_layout)
 
-        val uid = fauth.currentUser?.uid
-
-        if (uid != null) {
-
-            fstore.collection("users").document(uid).get()
-                .addOnSuccessListener { documentSnapshot ->
-
-                    val data = documentSnapshot.data
-                    if (data != null) {
-                        progressBar.visibility = View.GONE
-                        name.text = "NAME: " + data["name"]
-                        email.text = "EMAIL ID: " + fauth.currentUser?.email
-                        phoneno.text = "PHONE NO: " + data["phoneNo"]
-                        password.text = "PASSWORD: " + data["password"]
-                    }
-
-                }
-        }
-
-        btnSignOut.setOnClickListener {
-            fauth.signOut()
-            startActivity(Intent(this, LoginActivity::class.java))
-            finish()
+        when(frag){
+            !is DashboardFragment -> openHome()
+            else -> super.onBackPressed()
         }
     }
-
-    private fun init() {
-        name = findViewById(R.id.name)
-        email = findViewById(R.id.email)
-        phoneno = findViewById(R.id.phoneno)
-        password = findViewById(R.id.password)
-        btnSignOut = findViewById(R.id.btnSignOut)
-        fauth = FirebaseAuth.getInstance()
-        fstore = FirebaseFirestore.getInstance()
-        progressBar = findViewById(R.id.progressBar)
-    }*/
-
+}

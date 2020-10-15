@@ -1,15 +1,19 @@
 package com.miniproject.bookapp.activity
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.provider.Settings
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.miniproject.bookapp.R
+import com.miniproject.bookapp.util.ConnectionManager
 
 class ForgetPasswordActivity : AppCompatActivity() {
 
@@ -34,16 +38,36 @@ class ForgetPasswordActivity : AppCompatActivity() {
             if (email.isNotEmpty()) {
 
                 progressBar.visibility = View.GONE
-                fauth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
 
-                    if (task.isSuccessful) {
-                        startActivity(Intent(this, LoginActivity::class.java))
-                        Toast.makeText(this, "Email Sent!", Toast.LENGTH_SHORT).show()
-                        finish()
-                    } else {
-                        progressBar.visibility = View.GONE
-                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
+                if (ConnectionManager().checkConnectivity(this@ForgetPasswordActivity)) {
+
+                    fauth.sendPasswordResetEmail(email).addOnCompleteListener { task ->
+
+                        if (task.isSuccessful) {
+                            startActivity(Intent(this, LoginActivity::class.java))
+                            Toast.makeText(this, "Email Sent!", Toast.LENGTH_SHORT).show()
+                            finish()
+                        } else {
+                            progressBar.visibility = View.GONE
+                            Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
+                        }
                     }
+                }else{
+                    val dialog = AlertDialog.Builder(
+                        this@ForgetPasswordActivity
+                    )
+                    dialog.setTitle("Error")
+                    dialog.setMessage("Internet Connection is not Found")
+                    dialog.setPositiveButton("Open Settings") { text, listener ->
+                        val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+                        startActivity(settingsIntent)
+                        finish()
+                    }
+                    dialog.setNegativeButton("Exit") { text, listener ->
+                        ActivityCompat.finishAffinity(this@ForgetPasswordActivity)
+                    }
+                    dialog.create()
+                    dialog.show()
                 }
 
             } else {
@@ -59,4 +83,9 @@ class ForgetPasswordActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         fauth = FirebaseAuth.getInstance()
     }
+
+    /*override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }*/
 }

@@ -15,10 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.miniproject.bookapp.R
-import com.miniproject.bookapp.fragment.AboutUsFragment
-import com.miniproject.bookapp.fragment.DashboardFragment
-import com.miniproject.bookapp.fragment.FaqsFragment
-import com.miniproject.bookapp.fragment.FavouritesFragment
+import com.miniproject.bookapp.fragment.*
 
 class HomeActivity : AppCompatActivity() {
     lateinit var drawerLayout: DrawerLayout
@@ -37,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
         init()
 
         setUpToolbar()
+
         openHome()
 
         var actionBarDrawerToggle = ActionBarDrawerToggle(
@@ -44,9 +42,6 @@ class HomeActivity : AppCompatActivity() {
         )
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
         actionBarDrawerToggle.syncState()
-
-        supportActionBar?.title = "Dashboard"
-        navigationView.setCheckedItem(R.id.dashboard)
 
         navigationView.setNavigationItemSelectedListener {
 
@@ -65,11 +60,10 @@ class HomeActivity : AppCompatActivity() {
                     drawerLayout.closeDrawers()
                 }
                 R.id.profile -> {
-                    Toast.makeText(
-                        this@HomeActivity,
-                        "Clicked on Profile",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout, ProfileFragment())
+                        .commit()
+                    drawerLayout.closeDrawers()
                     supportActionBar?.title = "Profile"
                 }
                 R.id.faqs -> {
@@ -88,10 +82,9 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.signout -> signout()
                 R.id.aboutus -> {
-                    supportFragmentManager.beginTransaction().replace(
-                        R.id.frame_layout,
-                        AboutUsFragment()
-                    ).commit()
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.frame_layout,AboutUsFragment())
+                        .commit()
                     drawerLayout.closeDrawers()
                     supportActionBar?.title = "About Us"
                 }
@@ -134,13 +127,13 @@ class HomeActivity : AppCompatActivity() {
         alertDialog.show()
     }
 
-    private fun openHome(){
+    private fun openHome() {
         val fragment = DashboardFragment()
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_layout, fragment)
         transaction.commit()
-        supportActionBar?.title = "Dashboard"
         navigationView.setCheckedItem(R.id.dashboard)
+        supportActionBar?.title = "Dashboard"
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -154,7 +147,7 @@ class HomeActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val frag = supportFragmentManager.findFragmentById(R.id.frame_layout)
 
-        when(frag){
+        when (frag) {
             !is DashboardFragment -> openHome()
             else -> super.onBackPressed()
         }

@@ -25,10 +25,12 @@ class SplashActivity : AppCompatActivity() {
         imgLogo = findViewById(R.id.imgLogo)
         textView = findViewById(R.id.textView)
 
-        logo = AnimationUtils.loadAnimation(this,
+        logo = AnimationUtils.loadAnimation(
+            this,
             R.anim.logo
         )
-        name = AnimationUtils.loadAnimation(this,
+        name = AnimationUtils.loadAnimation(
+            this,
             R.anim.name
         )
 

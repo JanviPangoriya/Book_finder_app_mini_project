@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
                 finish()
             }
 
-        }else{
+        } else {
             val dialog = AlertDialog.Builder(
                 this@LoginActivity
             )
@@ -55,72 +55,72 @@ class LoginActivity : AppCompatActivity() {
             dialog.show()
         }
 
-            progressBar.visibility = View.GONE
+        progressBar.visibility = View.GONE
 
-            btnLogin.setOnClickListener {
+        btnLogin.setOnClickListener {
 
-                val email = etEmail.text.toString()
-                val password = etPassword.text.toString()
+            val email = etEmail.text.toString()
+            val password = etPassword.text.toString()
 
-                if (email.isNotEmpty() && password.isNotEmpty()) {
+            if (email.isNotEmpty() && password.isNotEmpty()) {
 
-                    progressBar.visibility = View.VISIBLE
-                    if (ConnectionManager().checkConnectivity(this@LoginActivity)) {
+                progressBar.visibility = View.VISIBLE
+                if (ConnectionManager().checkConnectivity(this@LoginActivity)) {
 
-                        fauth.signInWithEmailAndPassword(email, password)
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    val userid = fauth.currentUser?.uid
-                                    if (userid != null) {
-                                        fstore.collection("users").document(userid)
-                                            .update("password", password)
-                                    }
-                                    startActivity(Intent(this, HomeActivity::class.java))
-                                    finish()
-                                } else {
-
-                                    progressBar.visibility = View.GONE
-                                    Toast.makeText(
-                                        this,
-                                        task.exception?.message,
-                                        Toast.LENGTH_SHORT
-                                    )
-                                        .show()
+                    fauth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val userid = fauth.currentUser?.uid
+                                if (userid != null) {
+                                    fstore.collection("users").document(userid)
+                                        .update("password", password)
                                 }
+                                startActivity(Intent(this, HomeActivity::class.java))
+                                finish()
+                            } else {
+
+                                progressBar.visibility = View.GONE
+                                Toast.makeText(
+                                    this,
+                                    task.exception?.message,
+                                    Toast.LENGTH_SHORT
+                                )
+                                    .show()
                             }
-                    }else{
-                        val dialog = AlertDialog.Builder(
-                            this@LoginActivity
-                        )
-                        dialog.setTitle("Error")
-                        dialog.setMessage("Internet Connection is not Found")
-                        dialog.setPositiveButton("Open Settings") { text, listener ->
-                            val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
-                            startActivity(settingsIntent)
-                            finish()
                         }
-                        dialog.setNegativeButton("Exit") { text, listener ->
-                            ActivityCompat.finishAffinity(this@LoginActivity)
-                        }
-                        dialog.create()
-                        dialog.show()
-                    }
-
                 } else {
-                    showError(etEmail)
-                    showError(etPassword)
+                    val dialog = AlertDialog.Builder(
+                        this@LoginActivity
+                    )
+                    dialog.setTitle("Error")
+                    dialog.setMessage("Internet Connection is not Found")
+                    dialog.setPositiveButton("Open Settings") { text, listener ->
+                        val settingsIntent = Intent(Settings.ACTION_WIRELESS_SETTINGS)
+                        startActivity(settingsIntent)
+                        finish()
+                    }
+                    dialog.setNegativeButton("Exit") { text, listener ->
+                        ActivityCompat.finishAffinity(this@LoginActivity)
+                    }
+                    dialog.create()
+                    dialog.show()
                 }
-            }
 
-            register.setOnClickListener {
-                startActivity(Intent(this, RegisterActivity::class.java))
-                finish()
-            }
-            txtForgetPassword.setOnClickListener {
-                startActivity(Intent(this, ForgetPasswordActivity::class.java))
-                finish()
+            } else {
+                showError(etEmail)
+                showError(etPassword)
             }
         }
+
+        register.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+            finish()
+        }
+        txtForgetPassword.setOnClickListener {
+            startActivity(Intent(this, ForgetPasswordActivity::class.java))
+            finish()
+        }
+    }
 
     private fun init() {
         etEmail = findViewById(R.id.etEmail)

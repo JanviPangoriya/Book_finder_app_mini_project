@@ -17,8 +17,8 @@
         android:text="BOOKOPEDIA"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txt"
@@ -29,8 +29,8 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/abhaya_libre"
         android:text="About App"
-        android:textStyle="bold"
-        android:textSize="28sp" />
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/mid"
@@ -41,7 +41,7 @@
         android:fontFamily="@font/abhaya_libre"
         android:padding="19dp"
         android:text="It is a multidisciplinary platform to access the books of different genres.This app is easy to use and easy to access.Our app will give readers new ways to show their love for books, review them online, keep track of what they read and of course, discover new books to read."
-        android:textSize="23sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        android:textSize="23sp" />
 
 </RelativeLayout>

@@ -52,7 +52,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
                             Toast.makeText(this, task.exception?.message, Toast.LENGTH_SHORT).show()
                         }
                     }
-                }else{
+                } else {
                     val dialog = AlertDialog.Builder(
                         this@ForgetPasswordActivity
                     )

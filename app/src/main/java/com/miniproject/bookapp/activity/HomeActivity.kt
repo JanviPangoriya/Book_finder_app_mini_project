@@ -83,7 +83,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.signout -> signout()
                 R.id.aboutus -> {
                     supportFragmentManager.beginTransaction()
-                        .replace(R.id.frame_layout,AboutUsFragment())
+                        .replace(R.id.frame_layout, AboutUsFragment())
                         .commit()
                     drawerLayout.closeDrawers()
                     supportActionBar?.title = "About Us"

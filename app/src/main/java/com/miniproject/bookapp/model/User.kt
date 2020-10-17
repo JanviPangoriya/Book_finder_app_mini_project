@@ -1,8 +1,8 @@
 package com.miniproject.bookapp.model
 
 data class User(
-    val name: String,
-    val emailId: String,
-    val phoneNo: String,
-    val password: String
+    var name: String,
+    var emailId: String?,
+    var phoneNo: String,
+    var password: String
 )

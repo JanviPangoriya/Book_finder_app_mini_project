@@ -98,7 +98,7 @@ class RegisterActivity : AppCompatActivity() {
                                         .show()
                                 }
                             }
-                    }else{
+                    } else {
                         val dialog = AlertDialog.Builder(
                             this@RegisterActivity
                         )
@@ -115,7 +115,7 @@ class RegisterActivity : AppCompatActivity() {
                         dialog.create()
                         dialog.show()
                     }
-                }else {
+                } else {
                     if (phoneno.length != 10) {
                         edtphone.error = "Invalid"
                         Toast.makeText(

@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/heading"
-        android:layout_marginLeft="140dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:fontFamily="@font/abhaya_libre"
         android:text="About App"

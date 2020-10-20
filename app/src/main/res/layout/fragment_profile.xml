@@ -18,16 +18,28 @@
             android:id="@+id/profile_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/ic_profileimage" />
+
+        <TextView
+            android:id="@+id/set_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/profile_image"
+            android:layout_marginLeft="50dp"
+            android:text="Edit Profile Photo"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/txtname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_image"
-            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/profile_image"
             android:fontFamily="@font/abhaya_libre"
             android:includeFontPadding="false"
             android:text="Name"
@@ -53,14 +65,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Full Name"
-                app:hintTextColor="@color/pink">
+                app:hintTextColor="@color/pink"
+                app:startIconDrawable="@drawable/ic_blackprofile">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etfull_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_blackprofile"
-                    android:drawablePadding="10dp"
                     android:inputType="text"
                     android:maxLines="1"
                     android:text="Name" />
@@ -73,14 +84,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Email"
-                app:hintTextColor="@color/pink">
+                app:hintTextColor="@color/pink"
+                app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etemail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_email"
-                    android:drawablePadding="10dp"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:text="Email" />
@@ -92,14 +102,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Phone No"
-                app:hintTextColor="@color/pink">
+                app:hintTextColor="@color/pink"
+                app:startIconDrawable="@drawable/ic_phone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etphone_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_phone"
-                    android:drawablePadding="10dp"
                     android:inputType="phone"
                     android:maxLength="10"
                     android:text="Phone No" />
@@ -111,15 +120,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:hint="Password"
-                app:hintTextColor="@color/pink">
+                app:hintTextColor="@color/pink"
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/ic_pass">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etpassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_pass"
-                    android:drawablePadding="10dp"
-                    android:inputType="text"
+                    android:inputType="textPassword"
                     android:maxLines="1"
                     android:text="@string/password" />
 

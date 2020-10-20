@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Patterns
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -47,7 +48,7 @@ class RegisterActivity : AppCompatActivity() {
             val confirmpassword = edtconfirmpassword.text.toString()
 
             if (name.isNotEmpty() && email.isNotEmpty() && phoneno.isNotEmpty() && password.isNotEmpty() && confirmpassword.isNotEmpty()) {
-                if (password.equals(confirmpassword) && phoneno.length == 10) {
+                if (password.equals(confirmpassword) && phoneno.length == 10 && Patterns.PHONE.matcher(phoneno).matches()) {
                     if (ConnectionManager().checkConnectivity(this@RegisterActivity)) {
 
                         progressBar.visibility = View.VISIBLE
@@ -116,7 +117,7 @@ class RegisterActivity : AppCompatActivity() {
                         dialog.show()
                     }
                 } else {
-                    if (phoneno.length != 10) {
+                    if (phoneno.length != 10 || !Patterns.PHONE.matcher(phoneno).matches()) {
                         edtphone.error = "Invalid"
                         Toast.makeText(
                             this,

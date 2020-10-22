@@ -21,12 +21,12 @@ import com.miniproject.bookapp.model.User
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
-
 class ProfileFragment : Fragment() {
 
     lateinit var txtname: TextView
     lateinit var profile_image: CircleImageView
     lateinit var set_profile: TextView
+    lateinit var delete_profile: TextView
     lateinit var etfull_name: TextInputEditText
     lateinit var etemail: TextInputEditText
     lateinit var etphone_no: TextInputEditText
@@ -77,7 +77,19 @@ class ProfileFragment : Fragment() {
             val opengalleryintent =
                 Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(opengalleryintent, 1000)
-            progressLayout.visibility = View.VISIBLE
+        }
+
+        delete_profile.setOnClickListener{
+            val photoRef: StorageReference = storageReference.child("users/" + (fauth.currentUser?.uid) + "/profile.jpg")
+            photoRef.delete().addOnCompleteListener(){task ->
+                if (task.isSuccessful){
+                    Toast.makeText(
+                        activity, "Profile Photo Removed!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    profile_image.setImageResource(R.drawable.ic_profileimage)
+                }
+            }
         }
 
         return view
@@ -116,6 +128,7 @@ class ProfileFragment : Fragment() {
     private fun init(view: View) {
         profile_image = view.findViewById(R.id.profile_image)
         set_profile = view.findViewById(R.id.set_profile)
+        delete_profile = view.findViewById(R.id.delete_profile)
         txtname = view.findViewById(R.id.txtname)
         etfull_name = view.findViewById(R.id.etfull_name)
         etemail = view.findViewById(R.id.etemail)

@@ -16,4 +16,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="more">More</string>
     <string name="generes">Generes</string>
+    <string name="title_of_the_book">Book Name</string>
+    <string name="Book_author">Author name</string>
 </resources>

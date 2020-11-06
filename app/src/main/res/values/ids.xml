@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="txtBookName" type="id">bookName</item>
+    <item name="Container3" type="id">Container3</item>
+</resources>

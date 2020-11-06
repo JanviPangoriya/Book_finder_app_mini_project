@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Container1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.DashboardFragment">
@@ -11,30 +11,22 @@
         android:id="@+id/edtSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:textSize="18sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:drawableStart="@drawable/ic_action_search"
         android:drawableEnd="@drawable/ic_action_search_enter"
-        android:drawablePadding="6dp"
+        android:drawablePadding="5dp"
         android:hint="Search Your Desired Book Here."
         android:textColor="@color/black"
         android:textColorHint="@color/darkGrey"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="18sp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDashboard1"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_below="@+id/edtSearch"
-        android:padding="10dp"
-        android:layout_margin="5dp" />
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtSearch"/>
 
 
-
-
-    </RelativeLayout>
+</RelativeLayout>

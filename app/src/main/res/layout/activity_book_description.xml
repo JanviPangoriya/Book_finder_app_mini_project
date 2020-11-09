@@ -6,7 +6,7 @@
     android:background="#fff"
     tools:context=".activity.BookDescriptionActivity">
 
-    <androidx.appcompat.widget.Toolbar
+  <!--  <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -99,6 +99,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:id="@+id/licontent1"
                 android:layout_below="@id/licontent">
 
                 <LinearLayout
@@ -116,12 +117,103 @@
                         android:gravity="center"
                         android:paddingLeft="10dp"
                         android:text="@string/favourites"
-                        android:textSize="20sp" />
-
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:id="@+id/pagecount"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.5"
+                        android:text="pages"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:id="@+id/language"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.5"
+                        android:text="Lang"
+                        android:gravity="center"
+                        android:paddingLeft="10dp"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000"
+                        />
                 </LinearLayout>
-            </RelativeLayout>
+            </RelativeLayout>-->
+    <RelativeLayout
+        android:id="@+id/licontent2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/licontent1">
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="9dp"
+            android:padding="5dp"
+            android:text="Description"
+            android:textColor="#000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/aboutbook"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/description"
+            android:layout_marginLeft="9dp"
+            android:lines="5"
+            android:padding="5dp"
+            android:text=" This is the book description"
+            android:textColor="#000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/aboutbook"
+            android:letterSpacing="7sp"
+            android:padding="5dp"
+            android:text=" This book is avaliable for online purchase at Rs.{s} .You can buy this book at"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/buyhere"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/price"
+            android:layout_margin="15dp"
+            android:background="@color/colorPrimary"
+            android:text="BUY HERE"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/licontent2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:orientation="horizontal"
+            android:weightSum="8"
+    </RelativeLayout>
+</RelativeLayout><!--
     </ScrollView>
 
-</RelativeLayout>
+</RelativeLayout>-->

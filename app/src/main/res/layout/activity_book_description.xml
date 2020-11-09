@@ -6,18 +6,18 @@
     android:background="#fff"
     tools:context=".activity.BookDescriptionActivity">
 
-  <!--  <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark" />
+   <androidx.appcompat.widget.Toolbar
+       android:id="@+id/toolbar"
+       android:layout_width="match_parent"
+       android:layout_height="?attr/actionBarSize"
+       android:background="@color/colorPrimary"
+       android:theme="@style/ThemeOverlay.AppCompat.Dark" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -142,10 +142,9 @@
                         android:paddingLeft="10dp"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="#000000"
-                        />
+                        android:textColor="#000000" />
                 </LinearLayout>
-            </RelativeLayout>-->
+            </RelativeLayout>
     <RelativeLayout
         android:id="@+id/licontent2"
         android:layout_width="match_parent"
@@ -201,19 +200,87 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/licontent2">
 
-        android:layout_below="@+id/licontent2">
+                <TextView
+                    android:id="@+id/publishernamehint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Publisher's Name"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="horizontal"
-            android:weightSum="8"
-    </RelativeLayout>
-</RelativeLayout><!--
+                <TextView
+                    android:id="@+id/publishername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/publishernamehint"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="_____________"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/publishedatehint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/publishername"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="Published date"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/publishedate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/publishedatehint"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:text="_____________"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/moreinfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/publishername"
+                    android:layout_marginLeft="150dp"
+                    android:layout_marginTop="47dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:paddingLeft="15dp"
+                    android:text="More Info"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/moreinfo"
+                    android:layout_marginLeft="130dp"
+                    android:layout_marginTop="47dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:paddingLeft="15dp"
+                    android:text=" Preview "
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+        </RelativeLayout>
     </ScrollView>
 
-</RelativeLayout>-->
+</RelativeLayout>

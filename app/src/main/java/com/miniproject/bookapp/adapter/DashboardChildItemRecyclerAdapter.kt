@@ -1,14 +1,18 @@
 package com.miniproject.bookapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.miniproject.bookapp.R
+import com.miniproject.bookapp.activity.BookDescriptionActivity
 import com.miniproject.bookapp.model.DashboardChildItem
+import com.squareup.picasso.Picasso
 
 class DashboardChildItemRecyclerAdapter(
     val context: Context,
@@ -19,6 +23,7 @@ class DashboardChildItemRecyclerAdapter(
         var bookImage: ImageView = view.findViewById(R.id.bookImage)
         var bookName: TextView = view.findViewById(R.id.BookName)
         var authorName: TextView = view.findViewById(R.id.AuthorName)
+        var llbook: LinearLayout = view.findViewById(R.id.llbook)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildItemViewHolder {
@@ -35,5 +40,11 @@ class DashboardChildItemRecyclerAdapter(
         val childItem = itemItem[position]
         holder.bookName.text = childItem.title
         holder.authorName.text = childItem.author
+        Picasso.get().load(childItem.thumbnail).error(R.drawable.logo).into(holder.bookImage)
+        holder.llbook.setOnClickListener {
+            val intent= Intent(context, BookDescriptionActivity::class.java)
+            intent.putExtra("selfLink",childItem.selfLink)
+            context.startActivity(intent)
+        }
     }
 }

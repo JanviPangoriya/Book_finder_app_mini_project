@@ -179,7 +179,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/aboutbook"
-            android:letterSpacing="7sp"
             android:padding="5dp"
             android:text=" This book is avaliable for online purchase at Rs.{s} .You can buy this book at"
             android:textColor="#000"

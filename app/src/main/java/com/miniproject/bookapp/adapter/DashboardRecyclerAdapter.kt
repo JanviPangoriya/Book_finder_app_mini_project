@@ -1,13 +1,16 @@
 package com.miniproject.bookapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.miniproject.bookapp.R
+import com.miniproject.bookapp.activity.BookListActivity
 import com.miniproject.bookapp.model.DashboardParentItem
 
 class DashboardRecyclerAdapter(val context: Context, val itemItem: ArrayList<DashboardParentItem>) :
@@ -18,6 +21,7 @@ class DashboardRecyclerAdapter(val context: Context, val itemItem: ArrayList<Das
     class DashboardViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var categoryName: TextView = view.findViewById(R.id.categoryName)
         var childRecycler: RecyclerView = view.findViewById(R.id.childRecycler)
+        var btnMore: Button = view.findViewById(R.id.btnMore)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashboardViewHolder {
@@ -40,6 +44,11 @@ class DashboardRecyclerAdapter(val context: Context, val itemItem: ArrayList<Das
         holder.childRecycler.layoutManager = layoutManager
         holder.childRecycler.adapter = childItemAdapter
         holder.childRecycler.setRecycledViewPool(viewPool)
+        holder.btnMore.setOnClickListener {
+            val intent = Intent(context, BookListActivity::class.java)
+            intent.putExtra("searchTerm", holder.categoryName.text.toString())
+            context.startActivity(intent)
+        }
     }
 
 }

@@ -87,7 +87,7 @@ class BookListActivity : AppCompatActivity() {
         val request = object : JsonObjectRequest(Method.GET, key, null, Response.Listener {
             var title = ""
             var author = "NOT AVAILABLE"
-            var thumbnail = ""
+            var thumbnail = "NOT AVAILABLE"
             var selfLink = ""
             try {
                 val items = it.getJSONArray("items")
@@ -95,7 +95,7 @@ class BookListActivity : AppCompatActivity() {
                     val item = items.getJSONObject(i)
                     val volumeInfo = item.getJSONObject("volumeInfo")
                     title = volumeInfo.getString("title")
-                    selfLink=item.getString("selfLink")
+                    selfLink = item.getString("selfLink")
                     if (volumeInfo.has("authors")) {
                         val authors = volumeInfo.getJSONArray("authors")
                         if (authors.length() == 1) {

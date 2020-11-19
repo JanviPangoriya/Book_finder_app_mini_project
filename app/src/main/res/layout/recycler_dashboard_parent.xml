@@ -17,19 +17,21 @@
             android:layout_centerVertical="true"
             android:gravity="clip_vertical"
             android:text="Genres"
-            android:textColor="#000000"
+            android:textColor="@color/grey"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btnMore"
             android:layout_width="90dp"
-            android:layout_height="50dp"
+            android:layout_height="40dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:background="@color/colorPrimary"
+            android:background="@color/darkPink"
             android:text="More"
-            android:textColor="#000000"
+            android:textColor="@color/white"
+            android:shadowColor="@color/darkGrey"
+            android:elevation="2dp"
             android:textSize="16sp"
             android:textStyle="bold"/>
 

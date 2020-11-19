@@ -250,7 +250,6 @@
                     android:textColor="@color/grey"
                     android:textSize="18sp" />
 
-
                 <Button
                     android:id="@+id/buyhere"
                     android:layout_width="wrap_content"

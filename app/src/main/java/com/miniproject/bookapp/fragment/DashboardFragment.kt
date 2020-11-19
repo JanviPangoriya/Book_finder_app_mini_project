@@ -34,8 +34,8 @@ class DashboardFragment : Fragment() {
     lateinit var queue: RequestQueue
     var itemList = arrayListOf<DashboardParentItem>()
 
-    var genreCategoryList = arrayListOf<String>("Fiction", "Education", "Thriller", "Romance", "Mystery", "Biography", "Fantasy", "Young Adult", "Novel")
-//
+    var genreCategoryList = arrayListOf<String>("Fiction", "Education", "Thriller", "Romance", "Mystery", "Biography", "Fantasy", "Novel")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

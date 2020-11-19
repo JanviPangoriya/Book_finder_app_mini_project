@@ -36,6 +36,6 @@
         android:id="@+id/recyclerDashboard1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edtSearch" />
+        android:layout_below="@+id/edtSearch"/>
 
 </RelativeLayout>

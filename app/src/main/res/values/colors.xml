@@ -9,4 +9,8 @@
     <color name="black">#000000</color>
     <color name="darkGrey">#9e9e9e</color>
     <color name="maroon">#c62828</color>
+    <color name="green">#64dd17</color>
+    <color name="lightBlueGrey">#eceff1</color>
+    <color name="lightWhite">#fafafa</color>
+    <color name="darkPink">#ef5350</color>
 </resources>

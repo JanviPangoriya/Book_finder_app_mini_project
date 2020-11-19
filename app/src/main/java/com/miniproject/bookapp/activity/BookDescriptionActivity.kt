@@ -5,7 +5,9 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -37,6 +39,8 @@ class BookDescriptionActivity : AppCompatActivity() {
     lateinit var queue: RequestQueue
     lateinit var jsonObject: JSONObject
     lateinit var book: Book
+    lateinit var llBuy: LinearLayout
+    lateinit var buyView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +87,8 @@ class BookDescriptionActivity : AppCompatActivity() {
         txtPublishername = findViewById(R.id.txtPublishername)
         txtPublishedate = findViewById(R.id.txtPublishedate)
         toolbar = findViewById(R.id.toolbar)
-
+        llBuy = findViewById(R.id.llBuy)
+        buyView = findViewById(R.id.buyView)
     }
 
     fun parseJson(key: String) {
@@ -143,6 +148,8 @@ class BookDescriptionActivity : AppCompatActivity() {
                     val saleInfo = it.getJSONObject("saleInfo")
 
                     if (saleInfo.has("listPrice")) {
+                        llBuy.visibility = View.VISIBLE
+                        buyView.visibility = View.VISIBLE
                         val listPrice = saleInfo.getJSONObject("listPrice")
                         price =
                             listPrice.getString("amount") + " " + listPrice.getString("currencyCode")
@@ -195,5 +202,27 @@ class BookDescriptionActivity : AppCompatActivity() {
         txtPublishername.text = book.publisher
         txtPublishedate.text = book.publishedDate
 
+    }
+
+    fun WebBuy(view:View){
+        openUrl(book.buyLink)
+    }
+
+    fun WebInfo(view:View){
+        openUrl(book.infoLink)
+    }
+
+    fun WebPreview(view:View){
+        openUrl(book.previewLink)
+    }
+
+    fun openUrl(url:String){
+        var uri: Uri = Uri.parse(url)
+        startActivity(Intent(Intent.ACTION_VIEW, uri))
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

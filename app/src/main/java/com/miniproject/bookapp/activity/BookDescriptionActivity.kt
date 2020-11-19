@@ -5,11 +5,9 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
+import android.text.Html
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
@@ -26,21 +24,26 @@ import org.json.JSONObject
 
 class BookDescriptionActivity : AppCompatActivity() {
 
-    lateinit var imgBookImage: ImageView
-    lateinit var txtAuthorname: TextView
-    lateinit var txtSubtitle: TextView
     lateinit var txtTitle: TextView
-    lateinit var txtPagecount: TextView
+    lateinit var txtSubtitle: TextView
+    lateinit var txtAuthorName: TextView
+    lateinit var imgBookImage: ImageView
+    lateinit var setFav:TextView
+    lateinit var removeFav:TextView
+    lateinit var txtPageCount: TextView
     lateinit var txtLanguage: TextView
-    lateinit var txtAboutbook: TextView
-    lateinit var txtPublishername: TextView
-    lateinit var txtPublishedate: TextView
+    lateinit var txtAboutBook: TextView
+    lateinit var txtRating:TextView
+    lateinit var txtPublisherName: TextView
+    lateinit var txtPrice: TextView
+    lateinit var txtPublisheDate: TextView
     lateinit var toolbar: Toolbar
     lateinit var queue: RequestQueue
     lateinit var jsonObject: JSONObject
     lateinit var book: Book
     lateinit var llBuy: LinearLayout
     lateinit var buyView: View
+    lateinit var progressLayout:RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,17 +81,22 @@ class BookDescriptionActivity : AppCompatActivity() {
 
     fun init() {
         imgBookImage = findViewById(R.id.imgBookImage)
-        txtAuthorname = findViewById(R.id.txtAuthorname)
+        txtAuthorName = findViewById(R.id.txtAuthorname)
         txtSubtitle = findViewById(R.id.txtSubtitle)
         txtTitle = findViewById(R.id.txtTitle)
-        txtPagecount = findViewById(R.id.txtPagecount)
+        txtPageCount = findViewById(R.id.txtPagecount)
+        txtPrice = findViewById(R.id.txtPrice)
+        setFav=findViewById(R.id.setFav)
+        removeFav=findViewById(R.id.removeFav)
+        txtRating=findViewById(R.id.txtRating)
         txtLanguage = findViewById(R.id.txtLanguage)
-        txtAboutbook = findViewById(R.id.txtAboutbook)
-        txtPublishername = findViewById(R.id.txtPublishername)
-        txtPublishedate = findViewById(R.id.txtPublishedate)
+        txtAboutBook = findViewById(R.id.txtAboutbook)
+        txtPublisherName = findViewById(R.id.txtPublishername)
+        txtPublisheDate = findViewById(R.id.txtPublishedate)
         toolbar = findViewById(R.id.toolbar)
         llBuy = findViewById(R.id.llBuy)
         buyView = findViewById(R.id.buyView)
+        progressLayout=findViewById(R.id.progressLayout)
     }
 
     fun parseJson(key: String) {
@@ -125,8 +133,9 @@ class BookDescriptionActivity : AppCompatActivity() {
                     if (volumeInfo.has("publishedDate")) {
                         publishedDate = volumeInfo.getString("publishedDate")
                     }
-                    if (volumeInfo.has("desciption")) {
-                        description = volumeInfo.getString("description")
+                    if (volumeInfo.has("description")) {
+                        val htmlDescription = volumeInfo.getString("description")
+                        description = Html.fromHtml(htmlDescription).toString()
                     }
                     if (volumeInfo.has("pageCount")) {
                         pageCount = volumeInfo.getInt("pageCount")
@@ -190,34 +199,37 @@ class BookDescriptionActivity : AppCompatActivity() {
     }
 
     fun updateLayout() {
+        progressLayout.visibility=View.GONE
         if (!book.thumbnail.equals("NOT AVAILABLE")) {
             Picasso.get().load(book.thumbnail).error(R.drawable.logo).into(imgBookImage)
         }
-        txtAuthorname.text = book.author
+        txtAuthorName.text = book.author
         txtSubtitle.text = book.subtitle
+        txtRating.text=book.rating.toString()
         txtTitle.text = book.title
-        txtPagecount.text = book.pageCount.toString()
+        txtPageCount.text = book.pageCount.toString()
         txtLanguage.text = book.language
-        txtAboutbook.text = book.description
-        txtPublishername.text = book.publisher
-        txtPublishedate.text = book.publishedDate
-
+        txtAboutBook.text = book.description
+        txtPublisherName.text = book.publisher
+        txtPublisheDate.text = book.publishedDate
+        txtPrice.text =
+            "This book is also avaliable for online purchase. You can buy this book at:\n" + book.price
     }
 
-    fun WebBuy(view:View){
+    fun WebBuy(view: View) {
         openUrl(book.buyLink)
     }
 
-    fun WebInfo(view:View){
+    fun WebInfo(view: View) {
         openUrl(book.infoLink)
     }
 
-    fun WebPreview(view:View){
+    fun WebPreview(view: View) {
         openUrl(book.previewLink)
     }
 
-    fun openUrl(url:String){
-        var uri: Uri = Uri.parse(url)
+    fun openUrl(url: String) {
+        val uri: Uri = Uri.parse(url)
         startActivity(Intent(Intent.ACTION_VIEW, uri))
     }
 
@@ -225,4 +237,15 @@ class BookDescriptionActivity : AppCompatActivity() {
         onBackPressed()
         return true
     }
+
+    fun removeFavourites(view: View) {
+        removeFav.visibility=View.GONE
+        setFav.visibility=View.VISIBLE
+
+    }
+    fun setFavourites(view: View) {
+        setFav.visibility=View.GONE
+        removeFav.visibility=View.VISIBLE
+    }
+
 }

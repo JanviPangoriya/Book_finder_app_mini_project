@@ -6,8 +6,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -17,55 +17,50 @@
             <RelativeLayout
                 android:id="@+id/rlHeader"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@color/pink">
+                android:layout_height="wrap_content"
+                android:background="@color/pink"
+                android:padding="15dp">
+
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
                     android:layout_width="110dp"
                     android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="30dp"
-                    android:src="@drawable/ic_profileimage" />
+                    android:layout_marginLeft="20dp"
+                    android:src="@drawable/ic_profileimage"
+                    android:layout_centerHorizontal="true"/>
 
                 <TextView
                     android:id="@+id/set_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/profile_image"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="5dp"
                     android:text="Edit Profile Photo"
-                    android:textColor="@color/black" />
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_below="@id/profile_image"
+                    android:layout_centerHorizontal="true"/>
 
                 <TextView
                     android:id="@+id/delete_profile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/set_profile"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="20dp"
+                    android:padding="5dp"
                     android:text="Delete Profile Photo"
-                    android:textColor="@color/black" />
-
-                <TextView
-                    android:id="@+id/txtname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_toRightOf="@+id/profile_image"
-                    android:fontFamily="@font/abhaya_libre"
-                    android:includeFontPadding="false"
-                    android:text="Name"
-                    android:textColor="@android:color/black"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_below="@id/set_profile"
+                    android:layout_centerHorizontal="true"/>
 
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="20dp">
 
@@ -148,12 +143,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
+                    android:layout_marginBottom="50dp"
                     android:background="@color/pink"
                     android:fontFamily="@font/abhaya_libre"
                     android:text="UPDATE"
+                    android:textSize="20sp"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="50dp"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

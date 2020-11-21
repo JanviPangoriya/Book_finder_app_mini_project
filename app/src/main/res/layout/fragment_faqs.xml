@@ -2,38 +2,39 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.FaqsFragment">
+    android:layout_height="wrap_content"
+    tools:context=".fragment.FaqsFragment"
+    android:layout_marginBottom="35dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/txtquestion1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
+            android:fontFamily="@font/abhaya_libre"
             android:padding="10dp"
-            android:paddingLeft="5dp"
+            android:paddingLeft="7dp"
             android:text="Que : What is a Bookopedia?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="5dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: The very best books entertain, engage and enlighten. They wrap us in their world, giving us a window into the lives of others or a mirror to reflect on ourselves. These are the books you'll find on Bookopedia. Our mission to seek out the diamonds in the rough from the approximate 100,000 books published each year so that you can spend more time reading exceptional titles, and less on books that don't live up to your expectations."
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -46,23 +47,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="10dp"
+            android:paddingLeft="7dp"
             android:text="Que: Who writes the Bookopedia reviews? Can I write for you?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: Bookopedia's reviews are written by a group of experienced freelance reviewers. If you are interested in reviewing for us please visit our reviewer information form, and if you feel you meet the critieria, complete the form."
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -75,23 +77,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="10dp"
+            android:paddingLeft="7dp"
             android:text="Que: Why can't I find the book I'm looking for?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: Bookopedia is a curated resource of the best contemporary books, we are not an all-encompassing database of every book published thus we may not list the specific book you're looking for. It would be foolish to claim that we cover every great book (not least because each person's definition will differ on that topic!) but what we do promise is that if we feature a book it is because we wholeheartedly believe it is worthy of note"
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -104,23 +107,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="10dp"
+            android:paddingLeft="7dp"
             android:text="Que: Does Bookopedia sell books?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: We do not, because we feel that if we did we would naturally tend towards recommending the bigger selling titles. We've got nothing against bestselling authors, and don't hesitate to recommend a well-known author when he or she publishes a particularly exceptional book but, in general, you don't need Bookopedia to tell you about these books, because you're probably already familiar with the author or will hear more than enough about the particular book from other sources. This frees us up to recommend a wider range of authors, including many unknowns before they become household names."
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -133,23 +137,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="10dp"
+            android:paddingLeft="7dp"
             android:text="Que: What types of books do you recommend?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: We recommend both fiction and non-fiction.fictions includes novels, thrillers, mysteries, historical fiction etc. non-fiction titles, such as biographies, current affairs, history and science. We also recommend some books for teens and young adults."
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -162,23 +167,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="10dp"
+            android:paddingLeft="7dp"
             android:text="Que: Will I like the recommendations?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: If you like to read well-written, thought provoking books that leave you knowing something new about the world then you'll likely enjoy Bookopedia."
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -191,8 +197,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Que: There are errors on Bookopedia, who do I tell?"
             android:textColor="@color/white"
             android:textSize="21sp" />
@@ -201,13 +208,14 @@
             android:id="@+id/question7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: If you see something wrong please do tell us - including factual errors relating to books and authors, spelling errors, links that don't go where they should, and so forth. Although everything is carefully proofread it is inevitable that mistakes will occur and links to external sources sometimes go bad over time, factual information changes etc. So it is always appreciated when somebody takes the time to let us know so we can correct it."
             android:textColor="@color/black"
             android:textSize="21sp" />
+
 
         <View
             android:layout_width="match_parent"
@@ -220,23 +228,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="10dp"
+            android:paddingLeft="7dp"
             android:text="Que: Do you recommmend children's books?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: We do include some books for teens and young adults, but rarely for children under the age of 10-12."
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -249,23 +258,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="10dp"
+            android:paddingLeft="7dp"
             android:text="Que: How can I get my book reviewed by Bookopedia?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: Please see the submission guidelines which will explain how to submit a book to Bookopedia."
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -274,27 +284,27 @@
             android:background="@color/darkGrey" />
 
         <TextView
-            android:id="@+id/txtquestion10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="10dp"
+            android:paddingLeft="7dp"
             android:text="Que: How many people visit Bookopedia?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: At the time of writing, Bookopedia receives about half a million unique visitors each month - not including search engine spiders and other 'non-human' traffic, which some websites include in their figures. If we were to include these (which some sites do) our stats would be well over 100% higher."
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -307,23 +317,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="10dp"
+            android:paddingLeft="7dp"
             android:text="Que: How can I advertise on Bookopedia?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: For Bookopedia's demographics and rates, please go to our advertising page. You will need to contact Bookopedia directly for specific rates, but this provides a starting points."
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"
@@ -336,23 +347,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/darkPink"
-            android:minHeight="40dp"
-            android:paddingLeft="10dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="10dp"
+            android:paddingLeft="7dp"
             android:text="Que: How do I contact Bookopedia?"
             android:textColor="@color/white"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/question12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="60dp"
             android:background="@color/lightWhite"
-            android:paddingLeft="10dp"
-            android:paddingBottom="50dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:padding="5dp"
+            android:paddingLeft="7dp"
             android:text="Ans: Full contact information, including email, telephone and mailing address are on our contact page."
             android:textColor="@color/black"
-            android:textSize="21sp" />
+            android:textSize="22sp" />
 
         <View
             android:layout_width="match_parent"

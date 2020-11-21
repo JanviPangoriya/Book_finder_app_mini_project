@@ -15,11 +15,13 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
+            android:fontFamily="@font/abhaya_libre"
             android:gravity="clip_vertical"
             android:text="Genres"
             android:textColor="@color/grey"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
+            android:textSize="22sp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnMore"
@@ -28,12 +30,13 @@
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:background="@color/darkPink"
+            android:elevation="2dp"
+            android:fontFamily="@font/abhaya_libre"
+            android:shadowColor="@color/darkGrey"
             android:text="More"
             android:textColor="@color/white"
-            android:shadowColor="@color/darkGrey"
-            android:elevation="2dp"
-            android:textSize="16sp"
-            android:textStyle="bold"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

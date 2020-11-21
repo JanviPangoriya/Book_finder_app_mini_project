@@ -2,22 +2,19 @@ package com.miniproject.bookapp.fragment
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.android.volley.RequestQueue
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.miniproject.bookapp.R
 import com.miniproject.bookapp.adapter.BookListAdapter
 import com.miniproject.bookapp.model.DashboardChildItem
-import org.json.JSONObject
 
 class FavouritesFragment : Fragment() {
 
@@ -28,7 +25,9 @@ class FavouritesFragment : Fragment() {
     lateinit var adapter: BookListAdapter
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var progressLayout: RelativeLayout
-    lateinit var progressBar: ProgressBar
+    lateinit var fauth: FirebaseAuth
+    lateinit var uid: String
+    var loaded = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,36 +38,59 @@ class FavouritesFragment : Fragment() {
 
         rlNoFavContent = view.findViewById(R.id.rlNoFavContent)
         rlNoFavContent.visibility = View.VISIBLE
-
+        fauth = FirebaseAuth.getInstance()
+        uid = fauth.currentUser?.uid.toString()
         fstore = FirebaseFirestore.getInstance()
         progressLayout = view.findViewById(R.id.progressLayout)
-        progressBar = view.findViewById(R.id.progressBar)
         favrecyclerview = view.findViewById(R.id.favrecyclerview)
         layoutManager = LinearLayoutManager(activity as Context)
 
-        fstore.collection("favbook").get().addOnSuccessListener {result ->
-
-            rlNoFavContent.visibility = View.GONE
-            progressLayout.visibility = View.GONE
-            progressBar.visibility = View.GONE
-
-            for(document in result){
-                var dashboardChildItem = DashboardChildItem(
-                    document["thumbnail"].toString(), document["title"].toString(), document["author"].toString(), document["selfLink"].toString()
-                    )
-                favBookList.add(dashboardChildItem)
-            }
-        }.addOnFailureListener{
-            Toast.makeText(context, "Some error occurred!", Toast.LENGTH_SHORT).show()
-        }
-
-        adapter = BookListAdapter(activity as Context, favBookList)
-        favrecyclerview.adapter = adapter
-        favrecyclerview.layoutManager = layoutManager
-
-        fstore = FirebaseFirestore.getInstance()
+        getList()
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!loaded) {
+            loaded = true
+        } else {
+            favBookList.clear()
+            favBookList = getList()
+            if (favBookList.size == 0) {
+                rlNoFavContent.visibility = View.VISIBLE
+            }
+            adapter.notifyDataSetChanged()
+        }
+    }
+
+    fun getList(): ArrayList<DashboardChildItem> {
+        fstore.collection("users").document(uid).collection("favbook").get()
+            .addOnSuccessListener { result ->
+
+                progressLayout.visibility = View.GONE
+
+                for (document in result) {
+
+                    val data = document.data
+
+                    var dashboardChildItem = DashboardChildItem(
+                        data["thumbnail"].toString(),
+                        data["title"].toString(),
+                        data["author"].toString(),
+                        data["selfLink"].toString()
+                    )
+                    favBookList.add(dashboardChildItem)
+                    rlNoFavContent.visibility = View.GONE
+                    adapter = BookListAdapter(activity as Context, favBookList)
+                    favrecyclerview.adapter = adapter
+                    favrecyclerview.layoutManager = layoutManager
+                }
+            }.addOnFailureListener {
+                Toast.makeText(context, "Some error occurred!", Toast.LENGTH_SHORT).show()
+            }
+
+        return favBookList
     }
 
 }

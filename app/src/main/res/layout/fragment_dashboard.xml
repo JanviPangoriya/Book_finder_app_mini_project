@@ -4,16 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.DashboardFragment"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    tools:context=".fragment.DashboardFragment">
 
     <EditText
         android:id="@+id/edtSearch"
-        android:layout_toLeftOf="@id/btnSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
+        android:layout_toStartOf="@id/btnSearch"
         android:drawableStart="@drawable/ic_action_search"
         android:drawablePadding="5dp"
         android:hint="Search Your Desired Book Here."
@@ -24,18 +24,21 @@
     <Button
         android:id="@+id/btnSearch"
         android:layout_width="40dp"
-        android:layout_marginRight="10dp"
-        android:paddingStart="10dp"
-        android:layout_marginTop="5dp"
         android:layout_height="37dp"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/pink"
         android:drawableStart="@drawable/ic_search_enter"
-        android:background="@color/pink" />
+        android:drawableTint="@color/white"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDashboard1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edtSearch"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/edtSearch" />
+
 
 </RelativeLayout>

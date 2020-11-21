@@ -23,7 +23,6 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class ProfileFragment : Fragment() {
 
-    lateinit var txtname: TextView
     lateinit var profile_image: CircleImageView
     lateinit var set_profile: TextView
     lateinit var delete_profile: TextView
@@ -79,10 +78,11 @@ class ProfileFragment : Fragment() {
             startActivityForResult(opengalleryintent, 1000)
         }
 
-        delete_profile.setOnClickListener{
-            val photoRef: StorageReference = storageReference.child("users/" + (fauth.currentUser?.uid) + "/profile.jpg")
-            photoRef.delete().addOnCompleteListener(){task ->
-                if (task.isSuccessful){
+        delete_profile.setOnClickListener {
+            val photoRef: StorageReference =
+                storageReference.child("users/" + (fauth.currentUser?.uid) + "/profile.jpg")
+            photoRef.delete().addOnCompleteListener() { task ->
+                if (task.isSuccessful) {
                     Toast.makeText(
                         activity, "Profile Photo Removed!",
                         Toast.LENGTH_SHORT
@@ -129,7 +129,6 @@ class ProfileFragment : Fragment() {
         profile_image = view.findViewById(R.id.profile_image)
         set_profile = view.findViewById(R.id.set_profile)
         delete_profile = view.findViewById(R.id.delete_profile)
-        txtname = view.findViewById(R.id.txtname)
         etfull_name = view.findViewById(R.id.etfull_name)
         etemail = view.findViewById(R.id.etemail)
         etphone_no = view.findViewById(R.id.etphone_no)
@@ -143,7 +142,6 @@ class ProfileFragment : Fragment() {
     }
 
     fun setProfileData() {
-        txtname.text = user.name
         etfull_name.setText(user.name)
         etemail.setText(user.emailId)
         etphone_no.setText(user.phoneNo)

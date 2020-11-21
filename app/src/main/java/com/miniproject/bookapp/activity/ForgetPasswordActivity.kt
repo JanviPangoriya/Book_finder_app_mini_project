@@ -5,10 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +18,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
     lateinit var btnGetEmail: Button
     lateinit var progressBar: ProgressBar
     lateinit var fauth: FirebaseAuth
+    lateinit var password: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -30,6 +28,11 @@ class ForgetPasswordActivity : AppCompatActivity() {
         init()
 
         progressBar.visibility = View.GONE
+
+        password.setOnClickListener {
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
 
         btnGetEmail.setOnClickListener {
 
@@ -80,6 +83,7 @@ class ForgetPasswordActivity : AppCompatActivity() {
     private fun init() {
         edtforgetemail = findViewById(R.id.edtforgetemail)
         btnGetEmail = findViewById(R.id.btnGetEmail)
+        password = findViewById(R.id.password)
         progressBar = findViewById(R.id.progressBar)
         fauth = FirebaseAuth.getInstance()
     }

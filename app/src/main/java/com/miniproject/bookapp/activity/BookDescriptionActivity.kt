@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.miniproject.bookapp.R
@@ -30,12 +31,12 @@ class BookDescriptionActivity : AppCompatActivity() {
     lateinit var txtSubtitle: TextView
     lateinit var txtAuthorName: TextView
     lateinit var imgBookImage: ImageView
-    lateinit var setFav:TextView
-    lateinit var removeFav:TextView
+    lateinit var setFav: TextView
+    lateinit var removeFav: TextView
     lateinit var txtPageCount: TextView
     lateinit var txtLanguage: TextView
     lateinit var txtAboutBook: TextView
-    lateinit var txtRating:TextView
+    lateinit var txtRating: TextView
     lateinit var txtPublisherName: TextView
     lateinit var txtPrice: TextView
     lateinit var txtPublisheDate: TextView
@@ -45,8 +46,10 @@ class BookDescriptionActivity : AppCompatActivity() {
     lateinit var book: Book
     lateinit var llBuy: LinearLayout
     lateinit var buyView: View
-    lateinit var progressLayout:RelativeLayout
+    lateinit var progressLayout: RelativeLayout
     lateinit var fstore: FirebaseFirestore
+    lateinit var fauth: FirebaseAuth
+    lateinit var uid: String
     var id = ""
     var selfLink = ""
 
@@ -54,7 +57,9 @@ class BookDescriptionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_description)
         init()
-        checkFavBook()
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
         toolbar.title = "Description"
         queue = Volley.newRequestQueue(this)
         val url = intent.getStringExtra("selfLink")
@@ -92,9 +97,9 @@ class BookDescriptionActivity : AppCompatActivity() {
         txtTitle = findViewById(R.id.txtTitle)
         txtPageCount = findViewById(R.id.txtPagecount)
         txtPrice = findViewById(R.id.txtPrice)
-        setFav=findViewById(R.id.setFav)
-        removeFav=findViewById(R.id.removeFav)
-        txtRating=findViewById(R.id.txtRating)
+        setFav = findViewById(R.id.setFav)
+        removeFav = findViewById(R.id.removeFav)
+        txtRating = findViewById(R.id.txtRating)
         txtLanguage = findViewById(R.id.txtLanguage)
         txtAboutBook = findViewById(R.id.txtAboutbook)
         txtPublisherName = findViewById(R.id.txtPublishername)
@@ -102,8 +107,10 @@ class BookDescriptionActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar)
         llBuy = findViewById(R.id.llBuy)
         buyView = findViewById(R.id.buyView)
-        progressLayout=findViewById(R.id.progressLayout)
+        progressLayout = findViewById(R.id.progressLayout)
         fstore = FirebaseFirestore.getInstance()
+        fauth = FirebaseAuth.getInstance()
+        uid = fauth.currentUser?.uid.toString()
     }
 
     fun parseJson(key: String) {
@@ -122,6 +129,7 @@ class BookDescriptionActivity : AppCompatActivity() {
                 var buyLink = "NOT FOR SALE"
                 try {
                     id = it.getString("id")
+                    checkFavBook(id)
                     selfLink = it.getString("selfLink")
                     val volumeInfo = it.getJSONObject("volumeInfo")
                     title = volumeInfo.getString("title")
@@ -192,6 +200,7 @@ class BookDescriptionActivity : AppCompatActivity() {
                     )
 
                     updateLayout()
+                    progressLayout.visibility = View.GONE
 
                 } catch (e: JSONException) {
                     Toast.makeText(this, e.message, Toast.LENGTH_SHORT).show()
@@ -208,13 +217,12 @@ class BookDescriptionActivity : AppCompatActivity() {
     }
 
     fun updateLayout() {
-        progressLayout.visibility=View.GONE
         if (!book.thumbnail.equals("NOT AVAILABLE")) {
             Picasso.get().load(book.thumbnail).error(R.drawable.logo).into(imgBookImage)
         }
         txtAuthorName.text = book.author
         txtSubtitle.text = book.subtitle
-        txtRating.text=book.rating.toString()
+        txtRating.text = book.rating.toString()
         txtTitle.text = book.title
         txtPageCount.text = book.pageCount.toString()
         txtLanguage.text = book.language
@@ -248,52 +256,59 @@ class BookDescriptionActivity : AppCompatActivity() {
     }
 
     fun removeFavourites(view: View) {
-        removeFav.visibility=View.GONE
-        setFav.visibility=View.VISIBLE
+        removeFav.visibility = View.GONE
+        setFav.visibility = View.VISIBLE
 
-        fstore.collection("favbook").document(id).delete().addOnCompleteListener{
-            task ->
-            if (task.isSuccessful){
-                Toast.makeText(this, "Book is removed from Favourites!", Toast.LENGTH_SHORT).show()
-            } else{
-                Toast.makeText(this, task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
+        fstore.collection("users").document(uid).collection("favbook").document(id).delete()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Book is removed from Favourites !", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    Toast.makeText(this, task.exception?.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
-        }
 
     }
 
     fun setFavourites(view: View) {
-        setFav.visibility=View.GONE
-        removeFav.visibility=View.VISIBLE
+        setFav.visibility = View.GONE
+        removeFav.visibility = View.VISIBLE
 
         var data: HashMap<String, Any> = hashMapOf()
+        data.put("id", id)
         data.put("title", book.title)
         data.put("author", book.author)
         data.put("thumbnail", book.thumbnail)
         data.put("selfLink", selfLink)
 
-        fstore.collection("favbook").document(id).set(data).addOnCompleteListener {
-                task ->
-            if (task.isSuccessful){
-                Toast.makeText(this, "Book is added to Favourites!", Toast.LENGTH_SHORT).show()
-            } else{
-                Toast.makeText(this, task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
+        fstore.collection("users").document(uid).collection("favbook").document(id).set(data)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Book is added to Favourites !", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, task.exception?.message.toString(), Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
-        }
     }
 
-    fun checkFavBook(){
+    fun checkFavBook(id: String) {
 
-       fstore.collection("favbook").whereEqualTo("id", true).get().addOnSuccessListener {
-           documents ->
-           for(document in documents){
-               setFav.visibility=View.GONE
-               removeFav.visibility=View.VISIBLE
-           }
-       }.addOnFailureListener{
-           removeFav.visibility=View.GONE
-           setFav.visibility=View.VISIBLE
-       }
+        fstore.collection("users").document(uid).collection("favbook").whereEqualTo("id", id).get()
+            .addOnSuccessListener { result ->
+                if (result.isEmpty) {
+                    removeFav.visibility = View.GONE
+                    setFav.visibility = View.VISIBLE
+                } else {
+                    removeFav.visibility = View.VISIBLE
+                    setFav.visibility = View.GONE
+                }
+            }.addOnFailureListener {
+                Toast.makeText(this, "Some error occurred!", Toast.LENGTH_SHORT).show()
+            }
+
     }
 
 }

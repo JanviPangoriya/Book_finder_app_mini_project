@@ -42,8 +42,8 @@ class DashboardChildItemRecyclerAdapter(
         holder.authorName.text = childItem.author
         Picasso.get().load(childItem.thumbnail).error(R.drawable.logo).into(holder.bookImage)
         holder.llbook.setOnClickListener {
-            val intent= Intent(context, BookDescriptionActivity::class.java)
-            intent.putExtra("selfLink",childItem.selfLink)
+            val intent = Intent(context, BookDescriptionActivity::class.java)
+            intent.putExtra("selfLink", childItem.selfLink)
             context.startActivity(intent)
         }
     }

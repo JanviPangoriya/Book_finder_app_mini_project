@@ -48,7 +48,10 @@ class RegisterActivity : AppCompatActivity() {
             val confirmpassword = edtconfirmpassword.text.toString()
 
             if (name.isNotEmpty() && email.isNotEmpty() && phoneno.isNotEmpty() && password.isNotEmpty() && confirmpassword.isNotEmpty()) {
-                if (password.equals(confirmpassword) && phoneno.length == 10 && Patterns.PHONE.matcher(phoneno).matches()) {
+                if (password.equals(confirmpassword) && phoneno.length == 10 && Patterns.PHONE.matcher(
+                        phoneno
+                    ).matches()
+                ) {
                     if (ConnectionManager().checkConnectivity(this@RegisterActivity)) {
 
                         progressBar.visibility = View.VISIBLE

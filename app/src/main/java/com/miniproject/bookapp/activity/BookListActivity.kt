@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
+import android.widget.RelativeLayout
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
@@ -26,10 +28,10 @@ import org.json.JSONObject
 class BookListActivity : AppCompatActivity() {
     lateinit var toolbar: androidx.appcompat.widget.Toolbar
     lateinit var queue: RequestQueue
-    lateinit var jsonObject: JSONObject
     lateinit var recyclerview: RecyclerView
     lateinit var adapter: BookListAdapter
     lateinit var layoutManager: RecyclerView.LayoutManager
+    lateinit var progressLayout: RelativeLayout
     var books = arrayListOf<DashboardChildItem>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +40,7 @@ class BookListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_book_list)
 
         toolbar = findViewById(R.id.toolbar)
+        progressLayout = findViewById(R.id.progressLayout)
         recyclerview = findViewById(R.id.recyclerview)
         layoutManager = LinearLayoutManager(this)
 
@@ -49,7 +52,6 @@ class BookListActivity : AppCompatActivity() {
 
         queue = Volley.newRequestQueue(this)
         val BASE_URL = "https://www.googleapis.com/books/v1/volumes?q="
-        jsonObject = JSONObject()
         val search_query = intent.getStringExtra("searchTerm")
 
         if (ConnectionManager().checkConnectivity(this)) {
@@ -82,6 +84,8 @@ class BookListActivity : AppCompatActivity() {
     fun setUpToolbar() {
         setSupportActionBar(toolbar)
         supportActionBar?.title = "Books"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     fun parseJson(key: String) {
@@ -91,6 +95,7 @@ class BookListActivity : AppCompatActivity() {
             var thumbnail = "NOT AVAILABLE"
             var selfLink = ""
             try {
+                progressLayout.visibility = View.GONE
                 val items = it.getJSONArray("items")
                 for (i in 0 until items.length()) {
                     val item = items.getJSONObject(i)
@@ -133,5 +138,10 @@ class BookListActivity : AppCompatActivity() {
         }) {
         }
         queue.add(request)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

@@ -15,6 +15,8 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.miniproject.bookapp.R
 import com.miniproject.bookapp.model.Book
 import com.miniproject.bookapp.util.ConnectionManager
@@ -44,11 +46,15 @@ class BookDescriptionActivity : AppCompatActivity() {
     lateinit var llBuy: LinearLayout
     lateinit var buyView: View
     lateinit var progressLayout:RelativeLayout
+    lateinit var fstore: FirebaseFirestore
+    var id = ""
+    var selfLink = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_description)
         init()
+        checkFavBook()
         toolbar.title = "Description"
         queue = Volley.newRequestQueue(this)
         val url = intent.getStringExtra("selfLink")
@@ -97,6 +103,7 @@ class BookDescriptionActivity : AppCompatActivity() {
         llBuy = findViewById(R.id.llBuy)
         buyView = findViewById(R.id.buyView)
         progressLayout=findViewById(R.id.progressLayout)
+        fstore = FirebaseFirestore.getInstance()
     }
 
     fun parseJson(key: String) {
@@ -114,6 +121,8 @@ class BookDescriptionActivity : AppCompatActivity() {
                 var price = "NOT FOR SALE"
                 var buyLink = "NOT FOR SALE"
                 try {
+                    id = it.getString("id")
+                    selfLink = it.getString("selfLink")
                     val volumeInfo = it.getJSONObject("volumeInfo")
                     title = volumeInfo.getString("title")
                     if (volumeInfo.has("subtitle")) {
@@ -242,10 +251,49 @@ class BookDescriptionActivity : AppCompatActivity() {
         removeFav.visibility=View.GONE
         setFav.visibility=View.VISIBLE
 
+        fstore.collection("favbook").document(id).delete().addOnCompleteListener{
+            task ->
+            if (task.isSuccessful){
+                Toast.makeText(this, "Book is removed from Favourites!", Toast.LENGTH_SHORT).show()
+            } else{
+                Toast.makeText(this, task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
+
     }
+
     fun setFavourites(view: View) {
         setFav.visibility=View.GONE
         removeFav.visibility=View.VISIBLE
+
+        var data: HashMap<String, Any> = hashMapOf()
+        data.put("title", book.title)
+        data.put("author", book.author)
+        data.put("thumbnail", book.thumbnail)
+        data.put("selfLink", selfLink)
+
+        fstore.collection("favbook").document(id).set(data).addOnCompleteListener {
+                task ->
+            if (task.isSuccessful){
+                Toast.makeText(this, "Book is added to Favourites!", Toast.LENGTH_SHORT).show()
+            } else{
+                Toast.makeText(this, task.exception?.message.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun checkFavBook(){
+
+       fstore.collection("favbook").whereEqualTo("id", true).get().addOnSuccessListener {
+           documents ->
+           for(document in documents){
+               setFav.visibility=View.GONE
+               removeFav.visibility=View.VISIBLE
+           }
+       }.addOnFailureListener{
+           removeFav.visibility=View.GONE
+           setFav.visibility=View.VISIBLE
+       }
     }
 
 }

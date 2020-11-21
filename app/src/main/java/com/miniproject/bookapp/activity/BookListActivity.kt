@@ -31,6 +31,7 @@ class BookListActivity : AppCompatActivity() {
     lateinit var adapter: BookListAdapter
     lateinit var layoutManager: RecyclerView.LayoutManager
     var books = arrayListOf<DashboardChildItem>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
